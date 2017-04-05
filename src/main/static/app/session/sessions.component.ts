@@ -2,7 +2,6 @@ import {Component, enableProdMode, OnInit, Input, OnChanges, SimpleChanges} from
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Session} from "./session";
 import {SessionService} from "./session.service";
-import {Speaker} from "../speaker/speaker";
 
 enableProdMode();
 
@@ -15,7 +14,6 @@ export class SessionsComponent implements OnInit, OnChanges {
     sessions: Session[];
     selectedSession: Session;
     search: string;
-    @Input() speaker: Speaker;
 
     constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService) {
     }
@@ -36,10 +34,10 @@ export class SessionsComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['speaker'].currentValue != changes['speaker'].previousValue) {
-            console.log("Reset selected session");
+//        if (changes['speaker'].currentValue != changes['speaker'].previousValue) {
+//            console.log("Reset selected session");
             this.selectedSession = null;
-        }
+//        }
     }
 
     onSelect(session: Session): void {

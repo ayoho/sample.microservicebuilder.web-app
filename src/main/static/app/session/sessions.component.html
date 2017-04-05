@@ -31,7 +31,7 @@
         <div class="col-xs-5">
             <ul class="list-group rounded" style="overflow: scroll; overflow-y: auto; overflow-x: hidden; min-height: 520px; max-height: 520px">
                 <li class="list-group-item list-group-item-action milky" style="cursor:hand;cursor:pointer"
-                    *ngFor="let session of (sessions | sessionFilter: search | sessionFilterSpeaker: speaker)"
+                    *ngFor="let session of (sessions | sessionFilter: search)"
                     [class.selected]="session === selectedSession"
                     (click)="onSelect(session)">
                     {{session.title}}
@@ -39,7 +39,7 @@
             </ul>
         </div>
         <div class="col-xs-7 p-a-1">
-            <session [session]="selectedSession" [speaker]="speaker"></session>
+            <session [session]="selectedSession" ></session>
         </div>
     </div>
 </div>

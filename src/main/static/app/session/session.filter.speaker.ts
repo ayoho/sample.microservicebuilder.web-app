@@ -1,6 +1,5 @@
 import {Injectable, Pipe, PipeTransform} from "@angular/core";
 import {Session} from "./session";
-import {Speaker} from "../speaker/speaker";
 
 @Pipe({
     name: 'sessionFilterSpeaker'
@@ -8,27 +7,15 @@ import {Speaker} from "../speaker/speaker";
 @Injectable()
 export class SessionFilterSpeaker implements PipeTransform {
 
-    transform(sessions: Session[], speaker: Speaker): Session[] {
-
+    transform(sessions: Session[]): Session[] {
         if (undefined === sessions) {
             return <Session[]>[];
         }
 
-        if (undefined === speaker) {
-            return sessions;
-        }
-
-        return sessions.filter(session => this.likeSession(session, speaker));
+        return sessions.filter(session => this.likeSession(session));
     }
 
-    private likeSession(session: Session, speaker: Speaker): boolean {
-
-        for (var s of session.speakers) {
-            if (speaker.id == s) {
-                return true;
-            }
-        }
-
+    private likeSession(session: Session): boolean {
         return false;
     }
 }

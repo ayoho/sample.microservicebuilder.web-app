@@ -10,10 +10,8 @@ export class EndpointsService {
 
     map: {[name: string]: Endpoint} =
     {
-        'speaker': <Endpoint> {name: 'speaker', url: location.protocol + '//' + location.host + '/speaker'},
         'session': <Endpoint> {name: 'session', url: location.protocol + '//' + location.host + '/sessions'},
-        'schedule': <Endpoint> {name: 'schedule', url: location.protocol + '//' + location.host + '/schedule'},
-        'vote': <Endpoint> {name: 'vote', url: location.protocol + '//' + location.host + '/vote'}
+        'schedule': <Endpoint> {name: 'schedule', url: location.protocol + '//' + location.host + '/schedule'}
     };
     error: string;
     endpoints: Endpoints;
