@@ -1,21 +1,11 @@
 import {ModuleWithProviders} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import {SessionsComponent} from "./session/sessions.component";
-import {SchedulesComponent} from "./schedule/schedules.component";
+import {UsersComponent} from "./admin/users.component";
 
 const appRoutes: Routes = [
     {
-        path: '',
-        redirectTo: '/schedules',
-        pathMatch: 'full'
-    },
-    {
-        path: 'sessions',
-        component: SessionsComponent
-    },
-    {
-        path: 'schedules',
-        component: SchedulesComponent
+        path: 'admin',
+        component: UsersComponent
     }
 ];
 
