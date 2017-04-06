@@ -46,6 +46,7 @@ export class UserService {
 
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // TODO - Display safe error
+        document.getElementById("user_error").innerHTML = "Error: " + error.message;
         return Promise.reject(error.message || error);
     }
 }

@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
     getUsers(): void {
         this.userService.getUsers().then(users => {
             this.setUsers(users);
-        }).catch(UsersComponent.handleError);
+        }).catch(this.handleError);
     }
 
     setUsers(users: User[]): void {
@@ -37,8 +37,9 @@ export class UsersComponent implements OnInit {
         this.data = JSON.stringify(this.users, null, 3);
     }
 
-    private static handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // TODO - Display safe error
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error);
+        this.data = "Error: " + error.message;
         return Promise.reject(error.message || error);
     }
 }
