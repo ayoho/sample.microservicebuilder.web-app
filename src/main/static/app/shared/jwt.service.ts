@@ -111,10 +111,12 @@ export class JwtService {
             queryString += encodeURIComponent(params[param]) + "&";
         }
 
+        // OP is configured to operate on port 31005
         var port = 31005;
         var authzUrl = location.protocol + "//" + location.hostname + ":" + port + "/oidc/endpoint/OP/authorize";
         var requestUrl = authzUrl + queryString;
 
+        // Redirect the browser window to the OP's authorization endpoint
         return new Promise(resolve => {
             window.location.replace(requestUrl);
         });
@@ -129,6 +131,8 @@ export class JwtService {
     }
 
     private storeRequestedService(): void {
+        // Requested service will be the path portion of the URL without query or fragment sections
+        // Ex: http://192.168.1.1/myService#fragment -> "myService" is the requested service
         var service = location.pathname;
         if (service.indexOf("?") > 0) {
             service = service.substring(0, service.indexOf("?"));
@@ -164,6 +168,7 @@ export class JwtService {
         if (!fragment || fragment === "" || fragment === "#") {
             return undefined;
         }
+        // location.hash includes the leading '#' character if present, so don't include that in the parameter string
         return this.getParameters(fragment.substr(1));
     }
 
@@ -195,11 +200,11 @@ export class JwtService {
     }
 
     private setInStorage(param: string, value: string): void {
-        window.localStorage.setItem(param, value);
+        window.sessionStorage.setItem(param, value);
     }
 
     private getFromStorage(param: string): string {
-        return window.localStorage.getItem(param);
+        return window.sessionStorage.getItem(param);
     }
 
     private setCookie(name: string, value: string, expireInMinutes: number): void {
