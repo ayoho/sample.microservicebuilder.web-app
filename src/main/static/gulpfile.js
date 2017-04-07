@@ -71,7 +71,6 @@ gulp.task('css-third-party', function () {
     var scripts = [
         './node_modules/fullcalendar/dist/fullcalendar.min.css',
         './node_modules/font-awesome/css/font-awesome.min.css',
-        './node_modules/primeng/resources/themes/afternoon/theme.css',
         './node_modules/primeng/resources/themes/afternoon/images/*.png',
         './node_modules/primeng/resources/primeng.min.css'
     ];
