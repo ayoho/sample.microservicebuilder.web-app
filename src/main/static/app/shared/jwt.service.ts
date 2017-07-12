@@ -83,7 +83,8 @@ export class JwtService {
         var expiresAt = Number(this.getFromStorage(this.EXPIRES_AT));
         if (expiresAt) {
             var now = new Date();
-            if (now.getTime() > expiresAt) {
+            // Check if current time is within 5 minutes of the cached token expiration time
+            if (now.getTime() > (expiresAt - (5 * 60 * 1000))) {
                 // Token has likely expired
                 return undefined;
             }
@@ -195,11 +196,11 @@ export class JwtService {
     }
 
     private setInStorage(param: string, value: string): void {
-        window.localStorage.setItem(param, value);
+        window.sessionStorage.setItem(param, value);
     }
 
     private getFromStorage(param: string): string {
-        return window.localStorage.getItem(param);
+        return window.sessionStorage.getItem(param);
     }
 
     private setCookie(name: string, value: string, expireInMinutes: number): void {
